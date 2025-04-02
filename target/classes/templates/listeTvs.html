@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="stylesheet" type="text/css"
+href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+    <title>Liste des Téléviseurs</title>
+</head>
+<body>
+    <div th:replace="template"></div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Liste des Téléviseurs
+            </div>
+            
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Taille</th>
+                            <th>Résolution</th>
+                            <th>Prix</th>
+                            <th>Technologie</th>
+                            <th>Fabricant</th>
+                            <th>Date Fabrication</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="t: ${tvs.content}">
+                            <td th:text="${t.idTv}"></td>
+                            <td th:text="${t.screenSize}"></td>
+                            <td th:text="${t.resolution}"></td>
+                            <td th:text="${t.priceTv}"></td>
+                            <td th:text="${t.displayTechnology}"></td>
+                            <td th:text="${t.manufacturer}"></td>
+                            <td th:text="${t.manufactureDate}"></td>
+                            <td>
+                                <a class="btn btn-danger" th:href="@{/supprimerTv(id=${t.idTv}, page=${currentPage}, size=${size})}" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page, status: ${pages}">
+                        <a th:class="${status.index == currentPage} ? 'btn btn-primary' : 'btn btn-secondary'"
+                           th:href="@{/listeTvs(page=${status.index}, size=${size})}"
+                           th:text="${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
