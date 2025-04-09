@@ -22,8 +22,8 @@ public class TvsApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        tvService.saveTv(new Tv("55 inch", 499.99, "4K UHD", "OLED", "Sony", new Date()));
-        tvService.saveTv(new Tv("65 inch", 799.99, "8K", "QLED", "Samsung", new Date()));
-        tvService.saveTv(new Tv("43 inch", 299.99, "Full HD", "LED", "LG", new Date()));
+        tvService.saveTv(new Tv("55 inch", 499.99, "4K UHD", "Samsung OLED TV",  new Date()));
+        tvService.saveTv(new Tv("65 inch", 799.99, "8K", "LG QLED TV", new Date()));
+        tvService.saveTv(new Tv("43 inch", 299.99, "Full HD", "Sony LED TV", new Date()));
     }
 }

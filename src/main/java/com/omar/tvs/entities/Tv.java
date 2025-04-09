@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 import java.util.Date;
 
 @Entity
@@ -15,22 +17,22 @@ public class Tv {
     private String screenSize;
     private Double priceTv;
     private String resolution;
-    private String displayTechnology;
-    private String manufacturer; // Added manufacturer instead of model
+    private String nomTv; // changed from displayTechnology to nomTv
     private Date manufactureDate;
+    @ManyToOne
+    private Marque marque;
 
     public Tv() {
         super();
     }
 
     public Tv(String screenSize, Double priceTv, String resolution, 
-             String displayTechnology, String manufacturer, Date manufactureDate) {
+             String nomTv, Date manufactureDate) {
         super();
         this.screenSize = screenSize;
         this.priceTv = priceTv;
         this.resolution = resolution;
-        this.displayTechnology = displayTechnology;
-        this.manufacturer = manufacturer;
+        this.nomTv = nomTv;
         this.manufactureDate = manufactureDate;
     }
 
@@ -67,20 +69,12 @@ public class Tv {
         this.resolution = resolution;
     }
 
-    public String getDisplayTechnology() {
-        return displayTechnology;
+    public String getNomTv() {
+        return nomTv;
     }
 
-    public void setDisplayTechnology(String displayTechnology) {
-        this.displayTechnology = displayTechnology;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setNomTv(String nomTv) {
+        this.nomTv = nomTv;
     }
 
     public Date getManufactureDate() {
@@ -91,11 +85,19 @@ public class Tv {
         this.manufactureDate = manufactureDate;
     }
 
+    public Marque getMarque() {
+        return marque;
+    }
+    
+    public void setMarque(Marque marque) {
+        this.marque = marque;
+    }
+
     @Override
     public String toString() {
         return "Tv [idTv=" + idTv + ", screenSize=" + screenSize 
                + ", priceTv=" + priceTv + ", resolution=" + resolution
-               + ", displayTechnology=" + displayTechnology + ", manufacturer=" + manufacturer
+               + ", nomTv=" + nomTv 
                + ", manufactureDate=" + manufactureDate + "]";
     }
 }
